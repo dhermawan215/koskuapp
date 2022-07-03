@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\KontrakanRequest;
+use app\Models\Galerry;
 use App\Models\Kontrakan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use app\Models\Galerry;
+use Illuminate\Support\Facades\File;
+use App\Http\Requests\KontrakanRequest;
+use Illuminate\Support\Facades\Storage;
 
 
 class SewaController extends Controller
@@ -105,8 +107,8 @@ class SewaController extends Controller
         if ($kontrakan->picture == "/storage/") {
             $data['picture'] = $request->file('picture')->store('kontrakan');
         } else if ($kontrakan->picture == $oldImage) {
-            $image_path = \public_path($kontrakan->picture);
-            \unlink($image_path);
+            $path = \parse_url($kontrakan->picture);
+            \unlink(\public_path($path['path']));
         } else {
         }
 
@@ -128,10 +130,14 @@ class SewaController extends Controller
     public function destroy($id, Kontrakan $kontrakan)
     {
         $kontrakan = Kontrakan::find($id);
-        $image_path = \public_path($kontrakan->picture);
+        // $image_path = \public_path($kontrakan->picture);
 
+        $path = \parse_url($kontrakan->picture);
+        \unlink(\public_path($path['path']));
         $kontrakan->delete();
-        \unlink($image_path);
+
+        // Storage::delete($kontrakan->picture);
+
 
         return \redirect()->route('sewa.index')->with('danger', 'data has deleted!');
     }

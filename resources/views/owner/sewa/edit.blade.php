@@ -25,7 +25,7 @@
                 </div>
             @endif
 
-            <form action="{{ route('admin-kontrakan.update', $item->id) }}" method="POST" class="w-full"
+            <form action="{{ route('sewa.update', $item->id) }}" method="POST" class="w-full"
                 enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
@@ -83,8 +83,7 @@
                                 Falitas*
                             </label>
                             <textarea cols="20" rows="10" value="{{ old('facility') }}" name="facility"
-                                class="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3"
-                                id="facility" type="text"
+                                class="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" id="facility" type="text"
                                 placeholder="isi fasilitas usaha">{{ $item->facility }}</textarea>
                             <span class="text-gray-700 text-xs italic">
                                 -pengisian bagian fasilitas dipisahkan dengan koma (,) contoh: (air,listrik 900VA, 3
@@ -187,8 +186,8 @@
                                 Rating Kontrakan*
                             </label>
                             <div>
-                                <input value="{{ old('ratings') ?? $item->ratings }}" name="ratings" step="0.01"
-                                    max="5"
+                                <input value="{{ old('ratings') ?? $item->ratings }}" name="ratings"
+                                    step="0.01" max="5"
                                     class="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3"
                                     id="ratings" type="number" placeholder="isi ratings kualitas usaha anda">
                             </div>

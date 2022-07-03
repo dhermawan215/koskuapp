@@ -48,6 +48,7 @@ class Kontrakan extends Model
 
     public function getPictureAttribute($picture)
     {
-        return \config('app.url') . Storage::url($picture);
+        return  Storage::url($picture);
+        // return \config('app.url') . Storage::url($picture);
     }
 }

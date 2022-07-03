@@ -16,8 +16,9 @@
                 <h3 class="text-gray-900 text-xl font-bold mb-2">{{ $item->name }}</h3>
                 <div class="flex flex-col md:flex-row md:max-w-xl rounded-lg bg-white mt-2">
                     <div class="w-full md:w-5/6">
+
                         @if ($item->picture)
-                            <img src="{{ asset($item->picture) }}" alt=""
+                            <img src="{{ url($item->picture) }}" alt=""
                                 class=" w-full h-96 md:h-auto object-cover md:w-48 rounded-t-lg md:rounded-none md:rounded-l-lg">
                         @elseif ($item->picture == '/storage/')
                             <img src="{{ asset('storage/kontrakan/image.jpg') }}" alt=""

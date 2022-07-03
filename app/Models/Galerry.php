@@ -25,6 +25,7 @@ class Galerry extends Model
 
     public function getPictureGalleryAttribute($pictureGalleries)
     {
-        return config('app.url') . Storage::url($pictureGalleries);
+        // return Storage::url($pictureGalleries);
+        return \config('app.url') . Storage::url($pictureGalleries);
     }
 }

@@ -42,6 +42,7 @@
                                     @endphp
 
                                     @forelse ($galery as $item)
+                                        {{-- @dd($item->picture_galleries) --}}
                                         <tr>
                                             <td class="font-medium px-6 py-4 text-left">{{ $no++ }}
                                             </td>
@@ -74,13 +75,13 @@
 
                                             </td>
                                         </tr>
-                                    @empty
+                @empty
                                         <tr>
                                             <td colspan="5" class="border text-center p-5">
                                                 Data Not Found!
                                             </td>
                                         </tr>
-                                    @endforelse
+ @endforelse
                                 </tbody>
                             </table>
                         </div>

@@ -119,8 +119,11 @@ class AdminKontrakanController extends Controller
         if ($kontrakan->picture == "/storage/") {
             $data['picture'] = $request->file('picture')->store('kontrakan');
         } else if ($kontrakan->picture == $oldImage) {
-            $image_path = \public_path($kontrakan->picture);
-            \unlink($image_path);
+            // $image_path = \public_path($kontrakan->picture);
+            // \unlink($image_path);
+
+            $path = \parse_url($kontrakan->picture);
+            \unlink(\public_path($path['path']));
         } else {
         }
 
@@ -143,10 +146,13 @@ class AdminKontrakanController extends Controller
     {
 
         $kontrakan = Kontrakan::find($id);
-        $image_path = \public_path($kontrakan->picture);
+        // $image_path = \public_path($kontrakan->picture);
+
+        $path = \parse_url($kontrakan->picture);
+        \unlink(\public_path($path['path']));
 
         $kontrakan->delete();
-        \unlink($image_path);
+        // \unlink($image_path);
 
         return \redirect()->route('admin-kontrakan.index')->with('danger', 'data has deleted!');
     }
