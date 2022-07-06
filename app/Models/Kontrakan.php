@@ -33,7 +33,7 @@ class Kontrakan extends Model
 
     public function galerries()
     {
-        return $this->hasMany(Galerry::class, 'kontrakan_id', 'id');
+        return $this->hasMany(Gallery::class, 'kontrakan_id', 'id');
     }
 
     public function user()
@@ -48,7 +48,7 @@ class Kontrakan extends Model
 
     public function getPictureAttribute($picture)
     {
-        return  Storage::url($picture);
-        // return \config('app.url') . Storage::url($picture);
+        // return  Storage::url($picture);
+        return \config('app.url') . Storage::url($picture);
     }
 }

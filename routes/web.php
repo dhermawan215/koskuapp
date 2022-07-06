@@ -6,8 +6,7 @@ use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\API\MidtransController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\Galery;
-use App\Http\Controllers\GaleryController;
+use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\SewaController;
 use App\Http\Controllers\TransactionController;
 
@@ -37,7 +36,7 @@ Route::prefix('dashboard')
     ->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
         Route::resource('sewa', SewaController::class)->middleware('owner');
-        Route::resource('gallery', GaleryController::class)->middleware('owner');
+        Route::resource('gallery', GalleryController::class)->middleware('owner');
         Route::resource('transaction', TransactionController::class)->middleware('owner');
         Route::get('transaction/{id}/status/{status}', [TransactionController::class, 'changeStatus'])->name('transaction.changeStatus');
     });

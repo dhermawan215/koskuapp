@@ -51,7 +51,7 @@
                                                 <div class="flex items-center mt-5">
                                                     <div class="flex-shrink-0 w-30 h-30">
                                                         <img class="w-10 h-10 rounded-full"
-                                                            src="{{ Storage::url($item->picture_galleries) }}"
+                                                            src="{{ asset('/storage/' . $item->picture_galleries) }}"
                                                             {{-- src="{{ asset('/storage/' . $item->picture_galleries) }}" --}} alt="admin dashboard ui">
                                                     </div>
                                                     <div class="ml-4">
@@ -75,7 +75,7 @@
 
                                             </td>
                                         </tr>
-                @empty
+    @empty
                                         <tr>
                                             <td colspan="5" class="border text-center p-5">
                                                 Data Not Found!

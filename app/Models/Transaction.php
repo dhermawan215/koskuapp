@@ -35,6 +35,6 @@ class Transaction extends Model
 
     public function getPaymentPictureAttribute($paymentPicture)
     {
-        return config('app.url') . Storage::url($paymentPicture);
+        return  Storage::url($paymentPicture);
     }
 }

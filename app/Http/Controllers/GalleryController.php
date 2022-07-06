@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\GalleryRequest;
-use App\Models\Galerry;
+
+use App\Models\Gallery;
 use App\Models\Kontrakan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\GalleryRequest;
 use Illuminate\Support\Facades\Storage;
 
-class GaleryController extends Controller
+class GalleryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,8 +20,10 @@ class GaleryController extends Controller
     public function index()
 
     {
+
         $id = Auth::user()->id;
-        $galeri = Galerry::whereRelation('kontrakan', 'users_id', $id)->paginate(10);
+        $galeri = Gallery::whereRelation('kontrakan', 'users_id', $id)->paginate(10);
+
         return \view('owner.galeri.index', [
             'galery' => $galeri
         ]);
@@ -50,9 +53,10 @@ class GaleryController extends Controller
     {
         $data = $request->all();
         if ($request->file('picture_galleries')) {
-            $data['picture_galleries'] = $request->file('picture_galleries')->store('gallery');
+            // $data['picture_galleries'] = $request->file('picture_galleries')->store('gallery');
+            $data['picture_galleries'] = $request->file('picture_galleries')->store('galeri', 'public');
         }
-        Galerry::create($data);
+        Gallery::create($data);
         return \redirect()->route('gallery.index')->with('success', 'data saved!');
     }
 
@@ -96,11 +100,21 @@ class GaleryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id, Galerry $galeri)
+    public function destroy($id, Gallery $galeri)
     {
-        $galeri = Galerry::find($id);
+        $galeri = Gallery::find($id);
+        // \dd($galeri);
 
-        Storage::delete($galeri->picture_galleries);
+        // \ddd($galeri->picture_galleries);
+
+        // try {
+
+        //     return \true;
+        // } catch (\Throwable $th) {
+        //     return $th;
+        // }
+        Storage::disk('public')->delete($galeri->picture_galleries);
+        // Storage::delete($galeri->picture_galleries);
         $galeri->delete();
 
         // $image_path = \public_path($galeri->picture_galleries);

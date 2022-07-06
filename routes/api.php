@@ -23,6 +23,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('kontrakans', [KontrakanRestController::class, 'all']);
+Route::get('recomendedkost', [KontrakanRestController::class, 'recomendedKost']);
+Route::get('popularkost', [KontrakanRestController::class, 'popularKost']);
+Route::get('newkost', [KontrakanRestController::class, 'newKost']);
+Route::get('generalkost', [KontrakanRestController::class, 'generalKost']);
 
 Route::post('register', [UserController::class, 'register']);
 Route::post('login', [UserController::class, 'login']);

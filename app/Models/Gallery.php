@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 
-class Galerry extends Model
+class Gallery extends Model
 {
     use HasFactory;
 
@@ -23,9 +23,9 @@ class Galerry extends Model
         return $this->belongsTo(Kontrakan::class, 'kontrakan_id', 'id');
     }
 
-    public function getPictureGalleryAttribute($pictureGalleries)
+    public function getPictureAttribute($pictureGalleries)
     {
-        // return Storage::url($pictureGalleries);
+        // return  Storage::url($picture);
         return \config('app.url') . Storage::url($pictureGalleries);
     }
 }

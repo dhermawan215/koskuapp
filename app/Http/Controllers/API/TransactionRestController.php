@@ -72,7 +72,7 @@ class TransactionRestController extends Controller
         ]);
 
         if ($request->hasFile('payment_picture')) {
-            $path = $request->file('payment_picture')->store('transactions');
+            $path = $request->file('payment_picture')->store('public/transactions');
         }
 
         $user = Auth::user()->id;
@@ -84,7 +84,8 @@ class TransactionRestController extends Controller
             'total' => $request->total,
             'status' => $request->status,
             'payment_method' => $request->payment_method,
-            'payment_picture' => $path
+            'payment_picture' => $path,
+            'payment_url' => ''
         ]);
 
         $transactionGetData = Transaction::with('user', 'kontrakan')->where('users_id', $user)->get();

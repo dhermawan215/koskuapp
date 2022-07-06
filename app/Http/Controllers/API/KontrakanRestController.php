@@ -79,4 +79,148 @@ class KontrakanRestController extends Controller
             'Data Kontrakan Berhasil Diambil'
         );
     }
+
+    public function recomendedKost(Request $request)
+    {
+        $id = $request->input('id');
+        $limit = $request->input('limit');
+        $tags = 'Rekomendasi';
+
+        //filter by id
+        if ($id) {
+            $kontrakanData = Kontrakan::with('galerries', 'user')->find($id);
+            //jika id ada
+            if ($kontrakanData) {
+                return ResponseFormatter::success(
+                    $kontrakanData,
+                    'Data Kontrakan Berhasil Diambil'
+                );
+            } else {
+                return ResponseFormatter::error(
+                    'null',
+                    'Data Kosong',
+                    404
+                );
+            } //jika id kosong
+
+
+
+        }
+        $kontrakanData = Kontrakan::with('galerries', 'user');
+        if ($tags) {
+            $kontrakanData->where('tags', $tags);
+        }
+        return ResponseFormatter::success(
+            $kontrakanData->paginate($limit),
+            'Data Kontrakan Berhasil Diambil'
+        );
+    }
+
+    public function popularKost(Request $request)
+    {
+        $id = $request->input('id');
+        $limit = $request->input('limit');
+        $tags = 'Populer';
+
+        //filter by id
+        if ($id) {
+            $kontrakanData = Kontrakan::with('galerries', 'user')->find($id);
+            //jika id ada
+            if ($kontrakanData) {
+                return ResponseFormatter::success(
+                    $kontrakanData,
+                    'Data Kontrakan Berhasil Diambil'
+                );
+            } else {
+                return ResponseFormatter::error(
+                    'null',
+                    'Data Kosong',
+                    404
+                );
+            } //jika id kosong
+
+
+
+        }
+        $kontrakanData = Kontrakan::with('galerries', 'user');
+        if ($tags) {
+            $kontrakanData->where('tags', $tags);
+        }
+        return ResponseFormatter::success(
+            $kontrakanData->paginate($limit),
+            'Data Kontrakan Berhasil Diambil'
+        );
+    }
+
+    public function newKost(Request $request)
+    {
+        $id = $request->input('id');
+        $limit = $request->input('limit');
+        $tags = 'Baru';
+
+        //filter by id
+        if ($id) {
+            $kontrakanData = Kontrakan::with('galerries', 'user')->find($id);
+            //jika id ada
+            if ($kontrakanData) {
+                return ResponseFormatter::success(
+                    $kontrakanData,
+                    'Data Kontrakan Berhasil Diambil'
+                );
+            } else {
+                return ResponseFormatter::error(
+                    'null',
+                    'Data Kosong',
+                    404
+                );
+            } //jika id kosong
+
+
+
+        }
+        $kontrakanData = Kontrakan::with('galerries', 'user');
+        if ($tags) {
+            $kontrakanData->where('tags', $tags);
+        }
+        return ResponseFormatter::success(
+            $kontrakanData->paginate($limit),
+            'Data Kontrakan Berhasil Diambil'
+        );
+    }
+
+    public function generalKost(Request $request)
+    {
+        $id = $request->input('id');
+        $limit = $request->input('limit');
+        $tags = 'Umum';
+
+        //filter by id
+        if ($id) {
+            $kontrakanData = Kontrakan::with('galerries', 'user')->find($id);
+            //jika id ada
+            if ($kontrakanData) {
+                return ResponseFormatter::success(
+                    $kontrakanData,
+                    'Data Kontrakan Berhasil Diambil'
+                );
+            } else {
+                return ResponseFormatter::error(
+                    'null',
+                    'Data Kosong',
+                    404
+                );
+            } //jika id kosong
+
+
+
+        }
+        $kontrakanData = Kontrakan::with('galerries', 'user');
+        if ($tags) {
+            $kontrakanData->where('tags', $tags);
+        }
+        return ResponseFormatter::success(
+            $kontrakanData->paginate($limit),
+            'Data Kontrakan Berhasil Diambil'
+        );
+    }
 }

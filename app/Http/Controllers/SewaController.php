@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use app\Models\Galerry;
+use App\Models\Gallery;
 use App\Models\Kontrakan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -51,7 +52,7 @@ class SewaController extends Controller
         $data = $request->all();
 
         if ($request->file('picture')) {
-            $data['picture'] = $request->file('picture')->store('kontrakan');
+            $data['picture'] = $request->file('picture')->store('public/kontrakan');
         }
 
         Kontrakan::create($data);
@@ -68,7 +69,7 @@ class SewaController extends Controller
     {
         // $kontrakan = Kontrakan::with('user')->find($id);
         $kontrakan = Kontrakan::with('user', 'galerries')->findOrFail($id);
-        $galery = Galerry::Where('kontrakan_id', $id)->get();
+        $galery = Gallery::Where('kontrakan_id', $id)->get();
         // \ddd($galery);
         return \view('owner.sewa.detail', [
             'item' => $kontrakan,
@@ -105,7 +106,7 @@ class SewaController extends Controller
 
 
         if ($kontrakan->picture == "/storage/") {
-            $data['picture'] = $request->file('picture')->store('kontrakan');
+            $data['picture'] = $request->file('picture')->store('public/kontrakan');
         } else if ($kontrakan->picture == $oldImage) {
             $path = \parse_url($kontrakan->picture);
             \unlink(\public_path($path['path']));
@@ -114,7 +115,7 @@ class SewaController extends Controller
 
         if ($request->file('picture')) {
 
-            $data['picture'] = $request->file('picture')->store('kontrakan');
+            $data['picture'] = $request->file('picture')->store('public/kontrakan');
         }
 
         $kontrakan->update($data);
