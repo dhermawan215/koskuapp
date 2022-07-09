@@ -15,7 +15,7 @@ class CreateTableKontrakan extends Migration
     {
         Schema::create('kontrakan', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('users_id');
+            $table->bigInteger('users_id')->unsigned();
             $table->string('name');
             $table->text('address');
             $table->string('district');
