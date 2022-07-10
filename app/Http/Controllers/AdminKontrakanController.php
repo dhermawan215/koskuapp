@@ -3,17 +3,18 @@
 namespace App\Http\Controllers;
 
 
+use Exception;
 use App\Models\User;
 use App\Models\Galerry;
+use App\Models\Gallery;
+
 use App\Models\Kontrakan;
+
 use Illuminate\Http\Request;
-
 use Illuminate\Support\Facades\DB;
-
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
 use App\Http\Requests\KontrakanRequest;
-use Exception;
 use Illuminate\Support\Facades\Storage;
 
 
@@ -77,7 +78,7 @@ class AdminKontrakanController extends Controller
     public function show($id)
     {
         $kontrakan = Kontrakan::with(['user'])->findOrFail($id);
-        $galery = Galerry::Where('kontrakan_id', $id)->get();
+        $galery = Gallery::Where('kontrakan_id', $id)->get();
         return \view('admin-kontrakan.detail', [
             'item' => $kontrakan,
             'galery' => $galery

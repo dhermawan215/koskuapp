@@ -17,7 +17,7 @@ class CreateTableGaleriesPicture extends Migration
         Schema::create('galleries', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('kontrakan_id')->unsigned();
-            $table->string('picture_galleris', 2048)->nullable();
+            $table->string('picture_galleries', 2048)->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
