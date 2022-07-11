@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 
 use Exception;
 use App\Models\User;
-use App\Models\Galerry;
+
 use App\Models\Gallery;
 
 use App\Models\Kontrakan;
@@ -62,7 +62,7 @@ class AdminKontrakanController extends Controller
         $data = $request->all();
 
         if ($request->file('picture')) {
-            $data['picture'] = $request->file('picture')->store('kontrakan');
+            $data['picture'] = $request->file('picture')->store('public/kontrakan');
         }
 
         Kontrakan::create($data);
@@ -117,22 +117,23 @@ class AdminKontrakanController extends Controller
         $oldImage = $request->oldImage;
 
 
-        if ($kontrakan->picture == "/storage/") {
-            $data['picture'] = $request->file('picture')->store('kontrakan');
-        } else if ($kontrakan->picture == $oldImage) {
-            // $image_path = \public_path($kontrakan->picture);
-            // \unlink($image_path);
+        $envPath = \config('app.url') . "/storage/";
 
-            $path = \parse_url($kontrakan->picture);
-            \unlink(\public_path($path['path']));
-        } else {
-        }
+
 
         if ($request->file('picture')) {
+            if ($kontrakan->picture == $envPath) {
 
-            $data['picture'] = $request->file('picture')->store('kontrakan');
+                $data['picture'] = $request->file('picture')->store('public/kontrakan');
+            } else if ($kontrakan->picture == $oldImage) {
+                $path = \parse_url($kontrakan->picture);
+                \unlink(\public_path($path['path']));
+            }
+
+
+
+            $data['picture'] = $request->file('picture')->store('public/kontrakan');
         }
-
         $kontrakan->update($data);
         return \redirect()->route('admin-kontrakan.index')->with('info', 'data has update!');
     }

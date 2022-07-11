@@ -104,16 +104,21 @@ class SewaController extends Controller
         $data = $request->all();
         $oldImage = $request->oldImage;
 
+        // \ddd($kontrakan->picture);
+        $envPath = \config('app.url') . "/storage/";
 
-        if ($kontrakan->picture == "/storage/") {
-            $data['picture'] = $request->file('picture')->store('public/kontrakan');
-        } else if ($kontrakan->picture == $oldImage) {
-            $path = \parse_url($kontrakan->picture);
-            \unlink(\public_path($path['path']));
-        } else {
-        }
+
 
         if ($request->file('picture')) {
+            if ($kontrakan->picture == $envPath) {
+
+                $data['picture'] = $request->file('picture')->store('public/kontrakan');
+            } else if ($kontrakan->picture == $oldImage) {
+                $path = \parse_url($kontrakan->picture);
+                \unlink(\public_path($path['path']));
+            }
+
+
 
             $data['picture'] = $request->file('picture')->store('public/kontrakan');
         }
