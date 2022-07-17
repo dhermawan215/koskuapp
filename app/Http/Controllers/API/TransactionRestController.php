@@ -100,9 +100,11 @@ class TransactionRestController extends Controller
                 'users_id' => 'required|exists:users,id',
                 'kontrakan_id' => 'required|exists:kontrakan,id',
                 'total' => 'required',
-                'status' => 'required|in:PENDING,CANCELLED,FAILED,SUCCESS',
+                'status' => 'required|in:PENDING,CANCELLED,SUCCESS',
             ]
         );
+
+        \ddd($request->validate());
 
         $user = Auth::user()->id;
         $kos   = $request->kontrakan_id;
