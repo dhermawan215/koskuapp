@@ -92,7 +92,7 @@ class TransactionRestController extends Controller
         return ResponseFormatter::success($transactionGetData, 'Transaksi Berhasil');
     }
 
-    public function checkoutAuto(Request $request)
+    public function submit(Request $request)
     {
 
         $request->validate(
@@ -104,25 +104,28 @@ class TransactionRestController extends Controller
             ]
         );
 
-        \ddd($request->validate());
 
-        $user = Auth::user()->id;
+
+        $user = $request->users_id;
+
         $kos   = $request->kontrakan_id;
         $kode = 'TRSC/' . $user . '/' . $kos  . '/' . \date('Ymd') . '/' . \date('his');
         $metode = "Auto Midtrans";
 
         $transaction = Transaction::create(
             [
-                'users_id' => $request->users_id,
+                'users_id' => $user,
                 'kontrakan_id' => $request->kontrakan_id,
                 'transaction_number' => $kode,
                 'total' => $request->total,
                 'status' => $request->status,
                 'payment_method' => $metode,
+                'payment_picture' => null,
                 'payment_url' => ''
 
             ]
         );
+
 
         //konfigurasi midtrans
         \Midtrans\Config::$serverKey = \config('services.midtrans.serverKey');
@@ -161,7 +164,7 @@ class TransactionRestController extends Controller
 
             return ResponseFormatter::success($transaction, 'Transaksi Berhasil');
         } catch (\Exception $e) {
-            return ResponseFormatter::error($e, 'Transaksi Gagal');
+            return ResponseFormatter::error($e->getMessage(), 'Transaksi Gagal');
         }
     }
 }
