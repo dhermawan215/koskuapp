@@ -13,7 +13,7 @@ class AddFieldRoomTransactions extends Migration
      */
     public function up()
     {
-        Schema::table('kontrakan', function (Blueprint $table) {
+        Schema::table('transactions', function (Blueprint $table) {
             $table->string('room')->after('total');
         });
     }
