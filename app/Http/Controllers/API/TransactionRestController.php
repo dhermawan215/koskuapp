@@ -100,6 +100,7 @@ class TransactionRestController extends Controller
                 'users_id' => 'required|exists:users,id',
                 'kontrakan_id' => 'required|exists:kontrakan,id',
                 'total' => 'required',
+                'room' => 'required',
                 'status' => 'required|in:PENDING,CANCELLED,SUCCESS',
             ]
         );
@@ -118,6 +119,7 @@ class TransactionRestController extends Controller
                 'kontrakan_id' => $request->kontrakan_id,
                 'transaction_number' => $kode,
                 'total' => $request->total,
+                'room' => $request->room,
                 'status' => $request->status,
                 'payment_method' => $metode,
                 'payment_picture' => null,

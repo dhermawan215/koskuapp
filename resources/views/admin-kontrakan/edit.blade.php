@@ -83,8 +83,7 @@
                                 Falitas*
                             </label>
                             <textarea cols="20" rows="10" value="{{ old('facility') }}" name="facility"
-                                class="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3"
-                                id="facility" type="text"
+                                class="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" id="facility" type="text"
                                 placeholder="isi fasilitas usaha">{{ $item->facility }}</textarea>
                             <span class="text-gray-700 text-xs italic">
                                 -pengisian bagian fasilitas dipisahkan dengan koma (,) contoh: (air,listrik 900VA, 3
@@ -102,6 +101,16 @@
                                 class="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3"
                                 id="gmap_url" type="url"
                                 placeholder="isi alamat usaha anda / link google map usaha anda">
+                        </div>
+                    </div>
+                    <div class="-mx-3 md:flex mb-1">
+                        <div class="md:w-full px-3">
+                            <label class="uppercase tracking-wide text-black text-xs font-bold mb-2" for="gmap_url">
+                                No Ruangan/Kamar Kosong *
+                            </label>
+                            <input value="{{ old('room') ?? $item->room }}" name="room"
+                                class="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3"
+                                id="room" type="text" placeholder="isi no ruangan atau kamar yang kosong">
                         </div>
                     </div>
                     <div class="-mx-3 md:flex mb-1">
@@ -188,8 +197,8 @@
                                 Rating Kontrakan*
                             </label>
                             <div>
-                                <input value="{{ old('ratings') ?? $item->ratings }}" name="ratings" step="0.01"
-                                    max="5"
+                                <input value="{{ old('ratings') ?? $item->ratings }}" name="ratings"
+                                    step="0.01" max="5"
                                     class="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3"
                                     id="ratings" type="number" placeholder="isi ratings kualitas usaha anda">
                             </div>

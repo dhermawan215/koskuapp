@@ -50,6 +50,7 @@
                                 <p>Price: <span class="font-semibold">Rp.{{ number_format($item->price) }}</span>
                                 </p>
                                 <p>Tags: <span class="text-orange-700">{{ $item->tags }}</span> </p>
+                                <p>No Kamar Kosong: <span class="text-orange-700">{{ $item->room }}</span> </p>
                             </div>
 
                             <div class="w-1/6">

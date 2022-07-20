@@ -17,6 +17,7 @@ class Transaction extends Model
         'kontrakan_id',
         'transaction_number',
         'total',
+        'room',
         'status',
         'payment_method',
         'payment_picture',

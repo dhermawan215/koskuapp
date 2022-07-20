@@ -24,8 +24,7 @@
                     </div>
                 </div>
             @endif
-            <form action="{{ route('sewa.store') }}" method="POST" class="w-full"
-                enctype="multipart/form-data">
+            <form action="{{ route('sewa.store') }}" method="POST" class="w-full" enctype="multipart/form-data">
                 @csrf
                 <div class="bg-white border shadow-md px-8 pt-6 pb-8 mb-4 flex flex-col h-full">
                     <div class="text-blue-500 hover:text-red-500 text-xl font-bold">
@@ -82,8 +81,8 @@
                                 Falitas*
                             </label>
                             <textarea cols="20" rows="10" value="{{ old('facility') }}" name="facility"
-                                class="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3"
-                                id="facility" type="text" placeholder="isi fasilitas usaha"></textarea>
+                                class="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" id="facility" type="text"
+                                placeholder="isi fasilitas usaha"></textarea>
                             <span class="text-gray-700 text-xs italic">
                                 -pengisian bagian fasilitas dipisahkan dengan koma (,) contoh: (air,listrik 900VA, 3
                                 ruang).-
@@ -100,6 +99,16 @@
                                 class="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3"
                                 id="gmap_url" type="url"
                                 placeholder="isi alamat usaha anda / link google map usaha anda">
+                        </div>
+                    </div>
+                    <div class="-mx-3 md:flex mb-1">
+                        <div class="md:w-full px-3">
+                            <label class="uppercase tracking-wide text-black text-xs font-bold mb-2" for="gmap_url">
+                                No Ruangan/Kamar Kosong *
+                            </label>
+                            <input value="{{ old('room') ?? $item->room }}" name="room"
+                                class="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3"
+                                id="room" type="text" placeholder="isi no ruangan atau kamar yang kosong">
                         </div>
                     </div>
                     <div class="-mx-3 md:flex mb-1">

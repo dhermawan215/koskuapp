@@ -24,6 +24,7 @@ class Kontrakan extends Model
         'status',
         'ratings',
         'tags',
+        'room',
         'whatsapp_number',
         'gmap_url',
         'latitude',
