@@ -27,13 +27,15 @@
                         </div>
                         <div class="flex flex-wrap mb-3">
                             <div class="w-full">
-                                <p>Total Bayar: <span
-                                        class="font-semibold">Rp.{{ number_format($item->total) }}</span>
+                                <p>Total Bayar: <span class="font-semibold">Rp.{{ number_format($item->total) }}</span>
                                 </p>
                                 <p>Metode Pembayaran: <span class="font-semibold">{{ $item->payment_method }}</span>
                                 </p>
                                 <p>Status: <span class="font-bold text-green-700">{{ $item->status }}</span> </p>
                                 <p>Tanggal Pesan: <span>{{ $item->created_at }}</span> </p>
+                                <p>No kamar yang dipesan: <span>{{ $item->room }}</span> </p>
+                                <p>Link transaksi: <span><a href="{{ $item->payment_url }}" target="_blank"
+                                            rel="noopener noreferrer">{{ $item->payment_url }}</a></span> </p>
                             </div>
                             <div class="w-full">
                                 <p>Kontrakan yang di sewa: <span
